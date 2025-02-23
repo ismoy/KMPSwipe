@@ -17,5 +17,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "TailorSwipe"
-include(":library")
+rootProject.name = "KmpSwipe"
+include(":kmpswipe")
