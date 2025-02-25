@@ -1,7 +1,6 @@
 # KMPSwipe
 
-KMPSwipe es una biblioteca Kotlin Multiplatform completa diseñada para integrar gestos de deslizamiento en tus aplicaciones basadas en Compose, dirigida tanto a plataformas Android como iOS con una API unificada. Esta biblioteca permite a los desarrolladores añadir funcionalidades de deslizamiento dinámicas e interactivas a cualquier componente composable, ya sea una Card, Box o cualquier elemento UI personalizado, mejorando la experiencia del usuario con gestos intuitivos.
-
+KMPSwipe is a complete Kotlin Cross-Platform library designed to integrate swipe gestures into your Compose-based applications, targeting both Android and iOS platforms with a unified API. This library allows developers to add dynamic and interactive swipe functionalities to any composable component, be it a Card, Box or any custom UI element, enhancing the user experience with intuitive gestures.
 ![KMPSwipe Banner](https://via.placeholder.com/800x200?text=KMPSwipe)
 
 [![Maven Central](https://img.shields.io/maven-central/v/io.github.ismoy/kmpswipe.svg)](https://search.maven.org/artifact/io.github.ismoy/kmpswipe)
@@ -58,6 +57,7 @@ SwipeState: Defines the current state of the swipe (Start, Swiping, End, Cancell
 SwipeableContent: The UI component that will be swiped
 SwipeBackgrounds: The UI components that are displayed underneath during the swipe
 ## Minimal example
+```
 
 ```kotlin
 KmpSwipe(
