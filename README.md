@@ -4,6 +4,24 @@ KMPSwipe es una biblioteca Kotlin Multiplatform completa diseñada para integrar
 
 ![KMPSwipe Banner](https://via.placeholder.com/800x200?text=KMPSwipe)
 
+# KMPSwipe
+
+KMPSwipe es una biblioteca Kotlin Multiplatform completa diseñada para integrar gestos de deslizamiento en tus aplicaciones basadas en Compose.
+
+![KMPSwipe Banner](https://via.placeholder.com/800x200?text=KMPSwipe)
+
+[![JitPack](https://jitpack.io/v/io.github.ismoy/kmpswipe.svg)](https://jitpack.io/#io.github.ismoy/kmpswipe)
+[![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![API](https://img.shields.io/badge/API-21%2B-brightgreen.svg)](https://android-arsenal.com/api?level=21)
+
+[![Kotlin](https://img.shields.io/badge/Kotlin-1.9.0-blue.svg?logo=kotlin)](https://kotlinlang.org)
+[![Compose](https://img.shields.io/badge/Compose-1.5.0-green.svg?logo=jetpackcompose)](https://developer.android.com/jetpack/compose)
+[![Platform](https://img.shields.io/badge/Platform-Android%20|%20iOS-orange.svg)](https://kotlinlang.org/docs/multiplatform.html)
+
+[![KMP](https://img.shields.io/badge/KMP-Kotlin%20Multiplatform-7F52FF.svg)](https://kotlinlang.org/docs/multiplatform.html)
+[![Swipe](https://img.shields.io/badge/UI-Swipe%20Gestures-red.svg)](https://github.com/ismoy/kmpswipe)
+[![UX](https://img.shields.io/badge/UX-Haptic%20Feedback-blueviolet.svg)](https://github.com/ismoy/kmpswipe)
+
 ## Índice
 
 - [How to use](#how-use)
@@ -774,5 +792,4 @@ KmpSwipe(
 
 ## License
 *KMPSwipe* is licensed under the *MIT license.* See the *LICENSE* file for more details.
-
 
