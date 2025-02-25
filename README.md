@@ -6,15 +6,15 @@ KMPSwipe es una biblioteca Kotlin Multiplatform completa diseñada para integrar
 
 ## Índice
 
-- [How use](#instalación)
-- [Basic concepts](#conceptos-básicos)
-- [Main components](#componentes-principales)
-- [Examples of use](#ejemplos-de-uso)
-- [Advanced customization](#personalización-avanzada)
-- [Performance optimization](#optimización-de-rendimiento)
-- [Integration with lists](#integración-con-listas)
-- [Full API](#api-completa)
-- [FQA](#preguntas-frecuentes)
+- [How to use](#how-use)
+- [Basic concepts](#basic-concepts)
+- [Main components](#main-components)
+- [Examples of use](#examples-of-use)
+- [Advanced customization](#advanced-customization)
+- [Performance optimization](#performance-optimization)
+- [Integration with lists](#integration-with-lists)
+- [Full API](#full-api)
+- [FAQ](#faq)
 
 ## How use
 ### Native Android
