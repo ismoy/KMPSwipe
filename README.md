@@ -143,6 +143,7 @@ The main component that wraps your content to make it slideable.
 ```
 ## List with slideable elements
 ```kotlin
+// In your Screen o App.kt 
 val itemList = listOf(
         Item(id = "1", title = "Item 1", description = "Descripción del Item 1"),
         Item(id = "2", title = "Item 2", description = "Descripción del Item 2"),
@@ -241,6 +242,7 @@ data class Item(
 ```
 ## Interfaz de bandeja de entrada con deslizamiento
 ```kotlin
+// In your Screen o App.kt 
 val emailList = listOf(
         Email(id = "1", sender = "Alice", time = "10:30 AM", subject = "Important Meeting", preview = "Hello, don't forget today's meeting at 3 PM..."),
         Email(id = "2", sender = "Bob", time = "11:15 AM", subject = "Project Update", preview = "I'm sending you the latest changes in the project report..."),
