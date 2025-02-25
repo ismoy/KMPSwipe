@@ -1,126 +1,135 @@
 package io.github.ismoy.kmpswipe
-import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.Spring
-import androidx.compose.animation.core.spring
 import androidx.compose.foundation.gestures.detectHorizontalDragGestures
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.offset
-import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.runtime.setValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.hapticfeedback.HapticFeedbackType
 import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.ui.input.pointer.positionChange
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
+import io.github.ismoy.kmpswipe.controllers.AnimationController
+import io.github.ismoy.kmpswipe.controllers.HapticController
+import io.github.ismoy.kmpswipe.controllers.SwipeController
+import io.github.ismoy.kmpswipe.models.SwipeDirection
+import io.github.ismoy.kmpswipe.models.SwipeState
+import io.github.ismoy.kmpswipe.ui.SwipeLayout
 import kotlinx.coroutines.launch
 import kotlin.math.abs
-
 
 @Composable
 fun KmpSwipe(
     modifier: Modifier = Modifier,
     onSwipeComplete: (SwipeDirection) -> Unit,
-    onSwipe: (direction: SwipeDirection, offset: Dp) -> Unit = { _, _ -> },
+    onSwipe: (SwipeDirection, Dp) -> Unit = { _, _ -> },
+    onSwipeStateChange: (SwipeState) -> Unit = {},
     swipeThreshold: Dp = 100.dp,
     resistance: Float = 1f,
     springStiffness: Float = 500f,
     swipeLimitMultiplier: Float = 1.5f,
-    paddingLeftValue: Dp = 6.dp,
-    paddingRightValue: Dp = 6.dp,
+    backgroundPaddingHorizontal: Dp = 6.dp,
     vibrationEnabled: Boolean = true,
-    dampingRatio:Float = Spring.DampingRatioMediumBouncy,
+    dampingRatio: Float = Spring.DampingRatioMediumBouncy,
     leftBackground: @Composable (offset: Dp) -> Unit = {},
     rightBackground: @Composable (offset: Dp) -> Unit = {},
-    content: @Composable () -> Unit,
+    enabled: Boolean = true,
+    swipeDirections: Set<SwipeDirection> = setOf(SwipeDirection.Left, SwipeDirection.Right),
+    onSwipeVelocity: (Float) -> Unit = {},
+    dynamicSwipeThreshold: ((Dp) -> Dp)? = null,
+    content: @Composable (swipeState: SwipeState, swipeDirection: SwipeDirection) -> Unit,
 ) {
     val density = LocalDensity.current
     val haptic = LocalHapticFeedback.current
-    val swipeThresholdPx = with(density) { swipeThreshold.toPx() }
     val scope = rememberCoroutineScope()
-    val offsetX = remember { Animatable(0f) }
-    var direction by remember { mutableStateOf(SwipeDirection.None) }
 
-    Box(
-        modifier = modifier
-    ) {
-        if (offsetX.value > 0) {
-            Box(
-                modifier = modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = paddingRightValue, vertical = paddingRightValue)
-                    .matchParentSize(),
-                contentAlignment = Alignment.CenterStart
-            ) {
-                rightBackground(with(density) { offsetX.value.toDp() })
-            }
+    val swipeController = remember {
+        SwipeController(
+            onSwipeComplete = onSwipeComplete,
+            onSwipe = onSwipe,
+            onSwipeStateChange = onSwipeStateChange,
+            onSwipeVelocity = onSwipeVelocity,
+            swipeDirections = swipeDirections
+        )
+    }
+
+    val animationController = remember {
+        AnimationController(
+            springStiffness = springStiffness,
+            dampingRatio = dampingRatio
+        )
+    }
+
+    val hapticController = remember {
+        HapticController(
+            hapticFeedback = haptic,
+            enabled = vibrationEnabled
+        )
+    }
+
+    val offsetX = remember { animationController.createAnimatable() }
+
+    val calculatedSwipeThresholdPx = remember(swipeThreshold, dynamicSwipeThreshold) {
+        if (dynamicSwipeThreshold != null) {
+            with(density) { dynamicSwipeThreshold(swipeThreshold).toPx() }
+        } else {
+            with(density) { swipeThreshold.toPx() }
         }
+    }
 
-        if (offsetX.value < 0) {
-            Box(
-                modifier = modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = paddingLeftValue, vertical = paddingLeftValue)
-                    .matchParentSize(),
-                contentAlignment = Alignment.CenterEnd
-            ) {
-                leftBackground(with(density) { (-offsetX.value).toDp() })
-            }
-        }
-
-        Box(
-            modifier = modifier
-                .offset { IntOffset(offsetX.value.toInt(), 0) }
-                .pointerInput(Unit) {
+    SwipeLayout(
+        modifier = modifier,
+        offsetX = offsetX.value,
+        backgroundPaddingHorizontal = backgroundPaddingHorizontal,
+        swipeDirections = swipeDirections,
+        density = density,
+        leftBackground = leftBackground,
+        rightBackground = rightBackground,
+        contentModifier = Modifier
+            .offset { IntOffset(offsetX.value.toInt(), 0) }
+            .pointerInput(enabled) {
+                if (enabled) {
                     detectHorizontalDragGestures(
+                        onDragStart = {
+                            swipeController.onDragStart()
+                        },
                         onDragEnd = {
                             scope.launch {
-                                if (abs(offsetX.value) > swipeThresholdPx) {
-                                    val swipeDir =
-                                        if (offsetX.value > 0) SwipeDirection.Right else SwipeDirection.Left
-                                    if (vibrationEnabled){
-                                        haptic.performHapticFeedback(
-                                            if (swipeDir == SwipeDirection.Right)
-                                            HapticFeedbackType.LongPress else HapticFeedbackType.LongPress
-                                        )
-                                    }
-                                    onSwipeComplete(swipeDir)
+                                swipeController.onDragEnd(offsetX.value, calculatedSwipeThresholdPx)
+
+                                if (abs(offsetX.value) > calculatedSwipeThresholdPx) {
+                                    hapticController.performHapticFeedback()
                                 }
-                                offsetX.animateTo(
-                                    targetValue = 0f,
-                                    animationSpec = spring(
-                                        dampingRatio = dampingRatio,
-                                        stiffness = springStiffness
-                                    )
-                                )
-                                direction = SwipeDirection.None
+
+                                animationController.animateToZero(offsetX).also {
+                                    swipeController.resetDirection()
+                                }
                             }
                         },
-                        onHorizontalDrag = { _, dragAmount ->
+                        onHorizontalDrag = { change, dragAmount ->
                             scope.launch {
-                                val newOffset = (offsetX.value + dragAmount / resistance).coerceIn(
-                                    -swipeThresholdPx * swipeLimitMultiplier,
-                                    swipeThresholdPx * swipeLimitMultiplier
+                                val adjustedDragAmount = dragAmount / resistance
+                                val newOffset = swipeController.onHorizontalDrag(
+                                    adjustedDragAmount,
+                                    offsetX.value,
+                                    calculatedSwipeThresholdPx * swipeLimitMultiplier,
+                                    density,
+                                    change.positionChange().x
                                 )
-                                offsetX.snapTo(newOffset)
-                                direction =
-                                    if (newOffset > 0) SwipeDirection.Right else SwipeDirection.Left
-                                onSwipe(direction, with(density) { newOffset.toDp() })
+
+                                if (newOffset != null) {
+                                    animationController.snapTo(offsetX, newOffset)
+                                }
                             }
                         }
                     )
                 }
-        ) {
-            content()
-        }
+            }
+    ) {
+        content(swipeController.currentSwipeState, swipeController.getEffectiveDirection())
     }
 }
