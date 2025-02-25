@@ -48,16 +48,15 @@ commonMain.dependencies {
    implementation("io.github.ismoy:kmpswipe:1.0.0") // use latest version
 }
 ```
-```kotlin
+
 ## Basic concepts
 KMPSwipe is based on four fundamental concepts:
-
 SwipeDirection: Defines the direction of the swipe (Left, Right, None)
 SwipeState: Defines the current state of the swipe (Start, Swiping, End, Cancelled)
 SwipeableContent: The UI component that will be swiped
 SwipeBackgrounds: The UI components that are displayed underneath during the swipe
 ## Minimal example
-```
+
 
 ```kotlin
 KmpSwipe(
