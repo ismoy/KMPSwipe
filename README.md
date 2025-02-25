@@ -16,12 +16,19 @@ KMPSwipe es una biblioteca Kotlin Multiplatform completa diseñada para integrar
 - [Full API](#full-api)
 - [FAQ](#faq)
 
+| Acción | Vista previa |
+|--------|-------------|
+| Custom Swipe | ![Swipe Left](https://github.com/ismoy/KMPSwipe/blob/main/images/video-to-gif-converter.gif) |
+| Basic Swipe  | ![Swipe Right](https://github.com/ismoy/KMPSwipe/blob/main/images/email_ejemple.gif) |
+
+
 ## How use
 ### Native Android
  Gradle (Kotlin DSL)
  ```kotlin
  dependencies{
    implementation("io.github.ismoy:kmpswipe-android:1.0.0") // use latest version
+}
 ```
 ## KMP (Kotlin multiplatform)
 Gradle (Kotlin DSL)
