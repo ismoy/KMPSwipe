@@ -4,13 +4,7 @@ KMPSwipe es una biblioteca Kotlin Multiplatform completa diseñada para integrar
 
 ![KMPSwipe Banner](https://via.placeholder.com/800x200?text=KMPSwipe)
 
-# KMPSwipe
-
-KMPSwipe es una biblioteca Kotlin Multiplatform completa diseñada para integrar gestos de deslizamiento en tus aplicaciones basadas en Compose.
-
-![KMPSwipe Banner](https://via.placeholder.com/800x200?text=KMPSwipe)
-
-[![JitPack](https://jitpack.io/v/io.github.ismoy/kmpswipe.svg)](https://jitpack.io/#io.github.ismoy/kmpswipe)
+[![Maven Central](https://img.shields.io/maven-central/v/io.github.ismoy/kmpswipe.svg)](https://search.maven.org/artifact/io.github.ismoy/kmpswipe)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![API](https://img.shields.io/badge/API-21%2B-brightgreen.svg)](https://android-arsenal.com/api?level=21)
 
