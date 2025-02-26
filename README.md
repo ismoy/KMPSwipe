@@ -251,7 +251,7 @@ data class Item(
     val description: String,
 )
 ```
-## Interfaz de bandeja de entrada con deslizamiento
+## Swipe-in ​​inbox interface
 ```kotlin
 // In your Screen o App.kt 
 val emailList = listOf(
@@ -390,8 +390,8 @@ data class Email(
     val preview: String
 )
 ```
-## Personalización avanzada
-### Umbral de deslizamiento dinámico
+ ## Advanced customization
+Dynamic slip threshold
 ```kotlin
 KmpSwipe(
     // ...
@@ -782,6 +782,10 @@ KmpSwipe(
 3. Commit your changes (git commit -m 'Add some amazing feature')
 4. Push to branch (git push origin feature/amazing-feature)
 5. Open a Pull Request
+
+## Native iOS Support
+
+Good news! Native iOS support is on the way. We're working hard to bring the functionality of KmpSwipe to the iOS platform, allowing you to use the same swiping logic in your iOS applications. Stay tuned for future updates and announcements regarding the availability of iOS support.
 
 ## License
 *KMPSwipe* is licensed under the *MIT license.* See the *LICENSE* file for more details.
