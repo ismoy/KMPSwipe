@@ -29,8 +29,8 @@ KMPSwipe is a complete Kotlin Cross-Platform library designed to integrate swipe
 
 | Acción | Vista previa |
 |--------|-------------|
-| Custom Swipe | ![Swipe Left](https://github.com/ismoy/KMPSwipe/blob/main/images/video-to-gif-converter.gif) |
-| Basic Swipe  | ![Swipe Right](https://github.com/ismoy/KMPSwipe/blob/main/images/email_ejemple.gif) |
+| Android | ![Swipe Left](https://github.com/ismoy/KMPSwipe/blob/main/images/demo_slide_android.gif) |
+| IOS  | ![Swipe Right](https://github.com/ismoy/KMPSwipe/blob/main/images/demo_slide_ios.gif) |
 
 
 ## How use
