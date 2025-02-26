@@ -37,7 +37,7 @@ KMPSwipe is a complete Kotlin Cross-Platform library designed to integrate swipe
  Gradle (Kotlin DSL)
  ```kotlin
  dependencies{
-   implementation("io.github.ismoy:kmpswipe-android:1.0.0") // use latest version
+   implementation("io.github.ismoy:kmpswipe:1.0.0")// use latest version
 }
 ```
 ## KMP (Kotlin multiplatform)
