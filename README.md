@@ -1,7 +1,7 @@
 # KMPSwipe
 
 KMPSwipe is a complete Kotlin Cross-Platform library designed to integrate swipe gestures into your Compose-based applications, targeting both Android and iOS platforms with a unified API. This library allows developers to add dynamic and interactive swipe functionalities to any composable component, be it a Card, Box or any custom UI element, enhancing the user experience with intuitive gestures.
-![KMPSwipe Banner](https://via.placeholder.com/800x200?text=KMPSwipe)
+## buymeacoffee.com/Ismoy                
 
 [![Maven Central](https://img.shields.io/maven-central/v/io.github.ismoy/kmpswipe.svg)](https://search.maven.org/artifact/io.github.ismoy/kmpswipe)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
@@ -788,4 +788,5 @@ Good news! Native iOS support is on the way. We're working hard to bring the fun
 
 ## License
 *KMPSwipe* is licensed under the *MIT license.* See the *LICENSE* file for more details.
+
 
