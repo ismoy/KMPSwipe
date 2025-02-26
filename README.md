@@ -1,7 +1,9 @@
 # KMPSwipe
 
 KMPSwipe is a complete Kotlin Cross-Platform library designed to integrate swipe gestures into your Compose-based applications, targeting both Android and iOS platforms with a unified API. This library allows developers to add dynamic and interactive swipe functionalities to any composable component, be it a Card, Box or any custom UI element, enhancing the user experience with intuitive gestures.
-## buymeacoffee.com/Ismoy                
+
+
+[![Buy Me a Coffee](https://img.buymeacoffee.com/button-api/?text=Buy%20Me%20a%20Coffee&emoji=☕&slug=ismoy&button_colour=FFDD00&font_colour=000000&font_family=Arial&outline_colour=000000&coffee_colour=ffffff)](https://www.buymeacoffee.com/Ismoy)               
 
 [![Maven Central](https://img.shields.io/maven-central/v/io.github.ismoy/kmpswipe.svg)](https://search.maven.org/artifact/io.github.ismoy/kmpswipe)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
@@ -29,8 +31,7 @@ KMPSwipe is a complete Kotlin Cross-Platform library designed to integrate swipe
 
 | Android | iOS |
 |---------|-----|
-| ![Swipe Left](https://github.com/ismoy/KMPSwipe/blob/main/images/demo_slide_android.gif) | ![Swipe Right](https://github.com/ismoy/KMPSwipe/blob/main/images/demo_slide_ios.gif) |
-
+| ![Swipe Left](https://github.com/ismoy/KMPSwipe/blob/master/images/demo_slide_android.gif) | ![Swipe Right](https://github.com/ismoy/KMPSwipe/blob/master/images/demo_slide_ios.gif) |
 
 ## How use
 ### Native Android
