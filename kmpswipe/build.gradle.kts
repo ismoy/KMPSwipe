@@ -1,5 +1,8 @@
+@file:OptIn(ExperimentalKotlinGradlePluginApi::class)
+
 import com.vanniktech.maven.publish.SonatypeHost
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
@@ -11,15 +14,18 @@ plugins {
 
 kotlin {
     @OptIn(ExperimentalKotlinGradlePluginApi::class)
-    targetHierarchy.default()
+    applyDefaultHierarchyTemplate()
     androidTarget {
         publishLibraryVariants("release")
-        compilations.all {
-            kotlinOptions {
-                jvmTarget = "11"
+            compilations.all {
+                compilerOptions.configure {
+                    jvmTarget.set(JvmTarget.JVM_11)
+                }
             }
-        }
+
     }
+    js()
+    jvm()
     listOf(
         iosX64(),
         iosArm64(),
@@ -52,13 +58,9 @@ kotlin {
             }
         }
     }
-    metadata {
-        compilations.all {
-            kotlinOptions {
-                freeCompilerArgs += "-Xexport-kdoc"
-            }
+        compilerOptions {
+            freeCompilerArgs.add("-Xexport-kdoc")
         }
-    }
 }
 
 android {
@@ -77,7 +79,7 @@ mavenPublishing{
     coordinates(
         groupId = "io.github.ismoy",
         artifactId = "kmpswipe",
-        version = "1.0.0-alpha-21"
+        version = "1.0.2"
     )
     pom {
         name.set("KmpSwipe")
